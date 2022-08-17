@@ -27,7 +27,6 @@ void setup()
 void loop()
   {
     display.clearDisplay();
-    display.setTextColor(WHITE);
     display.setCursor(0,0);
     display.println("abdullah");
     display.display(); 
