@@ -3,7 +3,6 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
-
 #define calibration_factor 43015
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
@@ -36,19 +35,21 @@ void loop() {
   if (scale.is_ready())
     {
       long reading = scale.get_units(5);
+      long readingInGram=reading*1000;
       Serial.println(reading);
-      
+
       display.clearDisplay();
       display.setCursor(20,0);
       display.setTextSize(2);
       display.println("Weight");
 
       
-      display.setCursor(0,25);
+      display.setCursor(5,25);
       display.setTextSize(3);
       display.print(reading);
+      //display.print(readingInGram);
 
-      display.setCursor(40,25);
+      display.setCursor(50,25);
       display.setTextSize(3);
       display.print("KG");
       
@@ -56,7 +57,9 @@ void loop() {
     }
   else
     {
-      Serial.println("HX711 not found.");
+      Serial.println("Sorry");
+      display.print("Sorry!");
+      display.display();
     }
   delay(500);
 }
